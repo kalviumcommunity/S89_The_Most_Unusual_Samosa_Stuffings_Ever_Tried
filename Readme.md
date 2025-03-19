@@ -41,7 +41,6 @@ Users can contribute their unique stuffing ideas, rate and review others, and en
 ---
 
 ## Tech Stack
-
 ### Front-End:
 - HTML
 - CSS
