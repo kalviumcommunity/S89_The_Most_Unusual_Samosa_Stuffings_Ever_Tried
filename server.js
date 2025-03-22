@@ -21,6 +21,8 @@ app.listen(8080, async () => {
     await mongoose.connect(process.env.MONGO_URI);
     console.log("server connected successfully");
   } catch (error) {
-    console.log(error);
+    
+    console.error("Database connection failed:", error);
+    process.exit(1);
   }
 });
