@@ -66,3 +66,6 @@ Users can contribute their unique stuffing ideas, rate and review others, and en
 I chose this project because I’ve had my fair share of samosa stuffing experiments that didn’t quite go as planned! I wanted to create a platform where people could share their unique stuffing combinations and help each other avoid similar kitchen disasters.
 
 Not only does this project allow me to expand my web development skills, but it also brings together samosa lovers to celebrate creativity and innovation in food. Whether you're a beginner or a seasoned cook, *The Most Unusual Samosa Stuffings Ever Tried* is the perfect place to learn, share, and enjoy the art of samosa making!
+
+
+deployment link: https://ee77360f.s89-the-most-unusual-samosa-stuffings-ever-tried.pages.dev/
