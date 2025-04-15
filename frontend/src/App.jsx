@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { BrowserRouter } from 'react-router-dom'
 import AllRoutes from './AllRoutes'
+import Navbar from './Navbar'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -11,6 +12,7 @@ function App() {
   return (
     <>
     <BrowserRouter>
+    <Navbar/>
         <AllRoutes/>
     </BrowserRouter>
     </>
