@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 const Item = require("./schema");
 
+// POST /items
 router.post(
   '/items',
   async (req, res) => {
     const { name, price, description } = req.body;
 
-    // Manual validation
     if (!name || typeof name !== 'string' || name.trim() === '') {
       return res.status(400).json({ errors: [{ msg: 'Name is required and must be a non-empty string' }] });
     }
@@ -29,12 +29,12 @@ router.post(
   }
 );
 
+// PUT /items/:id
 router.put(
   '/items/:id',
   async (req, res) => {
     const { name, price, description } = req.body;
 
-    // Manual validation
     if (name !== undefined && (typeof name !== 'string' || name.trim() === '')) {
       return res.status(400).json({ errors: [{ msg: 'Name cannot be empty and must be a string' }] });
     }
@@ -54,5 +54,37 @@ router.put(
     }
   }
 );
+
+// GET /items
+router.get('/items', async (req, res) => {
+  try {
+    const items = await Item.find();
+    res.json(items);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// GET /items/:id
+router.get('/items/:id', async (req, res) => {
+  try {
+    const item = await Item.findById(req.params.id);
+    if (!item) return res.status(404).json({ message: "Item not found" });
+    res.json(item);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// DELETE /items/:id
+router.delete('/items/:id', async (req, res) => {
+  try {
+    const deletedItem = await Item.findByIdAndDelete(req.params.id);
+    if (!deletedItem) return res.status(404).json({ message: "Item not found" });
+    res.json({ message: "Item deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 module.exports = router;
