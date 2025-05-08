@@ -6,7 +6,7 @@ const Item = require("./schema");
 router.post(
   '/items',
   async (req, res) => {
-    const { name, price, description } = req.body;
+    const { name, price, description, userId } = req.body;
 
     if (!name || typeof name !== 'string' || name.trim() === '') {
       return res.status(400).json({ errors: [{ msg: 'Name is required and must be a non-empty string' }] });
@@ -17,9 +17,12 @@ router.post(
     if (description !== undefined && typeof description !== 'string') {
       return res.status(400).json({ errors: [{ msg: 'Description must be a string' }] });
     }
+    if (!userId || typeof userId !== 'string' || userId.trim() === '') {
+      return res.status(400).json({ errors: [{ msg: 'UserId is required and must be a non-empty string' }] });
+    }
 
     try {
-      const item = new Item(req.body);
+      const item = new Item({ name, price, description, userId, created_by: userId });
       const savedItem = await item.save();
       res.status(201).json(savedItem);
     } catch (error) {
